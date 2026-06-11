@@ -21,6 +21,8 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright + Cucumber tests
       run: npx cucumber-js --require-module ts-node/register --require tests/step-definitions/**/*.ts --require tests/support/**/*.ts --format html:playwright-report/report.html
+      env:
+        CI: true
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
